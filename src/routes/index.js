@@ -45,7 +45,14 @@ const routes = [
 const router = createRouter({
   linkExactActiveClass: "is-active has-text-primary",
   history: createWebHashHistory(window.process.env.BASE_URL),
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { x: 0, y: 0 };
+    }
+  }
 });
 
 router.beforeEach(function (to, _, next) {
